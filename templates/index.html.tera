@@ -1,0 +1,15 @@
+{% extends "base" %}
+
+{% block title -%}
+{% if user_name %}
+Welcome, {{ user_name }}!
+{% else %}
+Welcome to the Bike Trip Tracker!
+{% endif %}
+{%- endblock title %}
+
+{% block content %}
+<section>
+  <h1>Test extends</h1>
+</section>
+{% endblock content %}

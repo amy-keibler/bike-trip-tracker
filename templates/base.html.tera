@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header>
+      <div class="name"><a href="/">🚴🏻‍♀️ Bike Trip Tracker</a></div>
+      <div>
+        <a href="/map">map</a>
+        <a href="/calendar">calendar</a>
+      </div>
+    </header>
+    <main>
+      <div>
+        {% block content %} {% endblock %}
+      </div>
+    </main>
+  </body>
+</html>
