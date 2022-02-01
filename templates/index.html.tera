@@ -2,7 +2,7 @@
 
 {% block title -%}
 {% if user_name %}
-Welcome, {{ user_name }}!
+Bike Trip Tracker for {{ user_name }}!
 {% else %}
 Welcome to the Bike Trip Tracker!
 {% endif %}
@@ -10,6 +10,60 @@ Welcome to the Bike Trip Tracker!
 
 {% block content %}
 <section>
-  <h1>Test extends</h1>
+  <h1>Log a trip</h1>
+
+  <div class="trip-form">
+    <div>
+      <label>Trip Purpose:</label>
+      <select id="trip_purpose">
+        <option value="fun">Fun</option>
+        <option value="shopping">Shopping</option>
+        <option value="travel">Travel</option>
+      </select>
+    </div>
+
+    <div>
+      <input type="radio" name="type" id="bike" checked>
+      <label for="bike">Bike</label>
+      <input type="radio" name="type" id="car">
+      <label for="car">Car</label>
+    </div>
+
+    <div>
+      <label>Bike Parking:</label>
+      <select id="bike_parking">
+        <option value="out_front">Out Front</option>
+        <option value="nearby">Nearby</option>
+        <option value="improvised">Improvised</option>
+        <option value="none">None</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Car Reason:</label>
+      <select id="car_reason">
+        <option value="distance">Distance</option>
+        <option value="weather">Weather</option>
+        <option value="temperature">Temperature</option>
+        <option value="energy">Energy</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div>
+      <button id="form_submit" type="submit">Submit</button>
+    </div>
+  </div>
+
 </section>
 {% endblock content %}
+
+{% block scripts %}
+<script type="module" src="/static/scripts/form.js"></script>
+<script type="module">
+  import {submitForm} from "/static/scripts/form.js";
+
+  const submitButton = document.getElementById("form_submit");
+  submitButton.addEventListener("click", submitForm);
+</script>
+{% endblock scripts %}
