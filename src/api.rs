@@ -1,10 +1,11 @@
+use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub struct ApiTrip {
     user_id: String,
-    date_time: String,
+    date_time: DateTime<Utc>,
     coordinates: Coordinates,
     purpose: TripPurpose,
     data: TripData,

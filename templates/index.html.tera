@@ -1,5 +1,9 @@
 {% extends "base" %}
 
+{% block styles %}
+<link rel="stylesheet" href="/static/vendor/leaflet/leaflet.css" />
+{% endblock styles %}
+
 {% block title -%}
 {% if user_name %}
 Bike Trip Tracker for {{ user_name }}!
@@ -12,6 +16,12 @@ Welcome to the Bike Trip Tracker!
 <section>
   <h1>Log a trip</h1>
 
+  <div id="map">
+  </div>
+
+  <div id="date_holder"></div>
+
+
   <div class="trip-form">
     <div>
       <label>Trip Purpose:</label>
@@ -23,9 +33,9 @@ Welcome to the Bike Trip Tracker!
     </div>
 
     <div>
-      <input type="radio" name="type" id="bike" checked>
+      <input type="radio" name="type" id="bike" value="bike_trip" checked>
       <label for="bike">Bike</label>
-      <input type="radio" name="type" id="car">
+      <input type="radio" name="type" id="car" value="car_trip">
       <label for="car">Car</label>
     </div>
 
@@ -59,11 +69,9 @@ Welcome to the Bike Trip Tracker!
 {% endblock content %}
 
 {% block scripts %}
+<script src="/static/vendor/leaflet/leaflet.js">
 <script type="module" src="/static/scripts/form.js"></script>
 <script type="module">
-  import {submitForm} from "/static/scripts/form.js";
-
-  const submitButton = document.getElementById("form_submit");
-  submitButton.addEventListener("click", submitForm);
+  import "/static/scripts/form.js";
 </script>
 {% endblock scripts %}

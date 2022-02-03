@@ -19,6 +19,11 @@ a:hover {
     text-decoration: underline;
 }
 
+section ::selection {
+    background-color: $subtle-color;
+}
+
+
 h1, h2 {
     color: $primary-color;
 }
@@ -189,4 +194,19 @@ img.vertical-image {
 
 hr {
     color: $primary-color;
+}
+
+#map {
+    height: 180px;
+    border: solid 5px $primary-color;
+    margin-bottom: 0.5em;
+
+    img {
+        border: unset;
+        width: unset;
+    }
+}
+
+#date_holder {
+    color: $primary-desaturated-color;
 }
