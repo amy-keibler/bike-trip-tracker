@@ -1,3 +1,9 @@
 [default]
 address = "0.0.0.0"
 port = 2727
+
+# used to debug on a phone (navigator.geolocation requires HTTPS) 
+[with_tls]
+secret_key = "roQIxDrrD4eNa3zGNB4jDC8hlR8c5a1xq4aB2UkbGtI="
+tls.certs = "certs/cert.pem"
+tls.key = "certs/key.pem"
