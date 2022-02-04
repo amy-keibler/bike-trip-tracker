@@ -14,7 +14,10 @@ Welcome to the Bike Trip Tracker!
 
 {% block content %}
 <section>
+
   <h1>Log a trip</h1>
+
+  <div id="error_holder" class="error-message">Test error message</div>
 
   <div id="map">
   </div>

@@ -13,7 +13,7 @@ export function updateInformation() {
 
     // get the coordinates
     if (!navigator.geolocation) {
-        console.log("TODO: warn about geolocation API");
+        displayError("Browser does not support getting GPS location");
         return;
     }
 
@@ -38,7 +38,7 @@ export function updateInformation() {
         },
         (error) => {
             console.log(`Failed to get position: ${error.message}`);
-            console.log("TODO: warn about position failure");
+            displayError("Could not get GPS location");
             currentPosition = undefined;
             clearMap();
         },
@@ -63,6 +63,15 @@ function toggleBikeCar(newTripType) {
 
 function submitForm(event) {
     event.preventDefault();
+    clearError();
+
+    const submitButton = document.getElementById("form_submit");
+    if (submitButton.getAttribute("aria-disabled") === "true") {
+        return;
+    }
+
+    submitButton.setAttribute("aria-disabled", "true");
+
 
     const trip = {
         user_id: 'test',
@@ -87,7 +96,6 @@ function submitForm(event) {
     // get the datetime
     trip.date_time = currentDateTime.toJSON();
 
-
     trip.coordinates = {
         latitude: currentPosition.latitude,
         longitude: currentPosition.longitude,
@@ -100,8 +108,25 @@ function submitForm(event) {
     };
     fetch('/api/trip', options)
         .then((response) => {
-            console.log(`Got response: ${JSON.stringify(response)}`);
+            if (!response.ok) {
+                displayError("Failed to save trip");
+            }
+            submitButton.setAttribute("aria-disabled", "false");
         });
+}
+
+function displayError(errorMessage) {
+    const errorHolder = document.getElementById("error_holder");
+    errorHolder.innerText = errorMessage;
+    errorHolder.classList.add("error-shown");
+    errorHolder.setAttribute("aria-live", "assertive");
+}
+
+function clearError() {
+    const errorHolder = document.getElementById("error_holder");
+    errorHolder.innerText = "";
+    errorHolder.classList.remove("error-shown");
+    errorHolder.removeAttribute("aria-live");
 }
 
 function initialize() {

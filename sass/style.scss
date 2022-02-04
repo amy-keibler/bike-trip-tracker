@@ -23,6 +23,9 @@ section ::selection {
     background-color: $subtle-color;
 }
 
+h1 {
+    margin-top: 0;
+}
 
 h1, h2 {
     color: $primary-color;
@@ -148,6 +151,11 @@ section, article {
                 border: 2px solid $primary-desaturated-color;
                 background-color: $background-color
             }
+
+            button[aria-disabled="true"] {
+                color: darkgrey;
+                background-color: lightgrey;
+            }
         }
     }
 }
@@ -199,12 +207,30 @@ hr {
 #map {
     height: 180px;
     border: solid 5px $primary-color;
+    border-radius: 4px;
     margin-bottom: 0.5em;
 
     img {
         border: unset;
         width: unset;
     }
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    font-size: larger;
+    background: $background-color;
+    padding: 0.2em;
+    margin: 1em 0;
+    border: solid 2px $primary-color;
+    border-radius: 4px;
+
+    display: none;
+}
+
+.error-message.error-shown {
+    display: block;
 }
 
 #date_holder {
