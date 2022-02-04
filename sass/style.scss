@@ -236,3 +236,14 @@ hr {
 #date_holder {
     color: $primary-desaturated-color;
 }
+
+.trip-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.2em;
+
+    button[selected="true"] {
+        color: $background-color;
+        background: $primary-desaturated-color;
+    }
+}

@@ -17,7 +17,7 @@ Welcome to the Bike Trip Tracker!
 
   <h1>Log a trip</h1>
 
-  <div id="error_holder" class="error-message">Test error message</div>
+  <div id="error_holder" class="error-message" aria-live="assertive">Test error message</div>
 
   <div id="map">
   </div>
@@ -35,14 +35,15 @@ Welcome to the Bike Trip Tracker!
       </select>
     </div>
 
-    <div>
-      <input type="radio" name="type" id="bike" value="bike_trip" checked>
-      <label for="bike">Bike</label>
-      <input type="radio" name="type" id="car" value="car_trip">
-      <label for="car">Car</label>
+    <div class="trip-toggle">
+      <button id="bike_trip" type="button">Bike Trip</button>
+      <button id="car_trip" type="button">Car Trip</button>
     </div>
 
-    <div>
+    <div id="dynamic_form" aria-live="polite">
+    </div>
+
+    <template id="bike_trip_form_template">
       <label>Bike Parking:</label>
       <select id="bike_parking">
         <option value="out_front">Out Front</option>
@@ -50,9 +51,9 @@ Welcome to the Bike Trip Tracker!
         <option value="improvised">Improvised</option>
         <option value="none">None</option>
       </select>
-    </div>
+    </template>
 
-    <div>
+    <template id="car_trip_form_template">
       <label>Car Reason:</label>
       <select id="car_reason">
         <option value="distance">Distance</option>
@@ -61,10 +62,10 @@ Welcome to the Bike Trip Tracker!
         <option value="energy">Energy</option>
         <option value="other">Other</option>
       </select>
-    </div>
+    </template>
 
     <div>
-      <button id="form_submit" type="submit">Submit</button>
+      <button id="form_submit" type="submit" aria-disabled="true">Submit</button>
     </div>
   </div>
 

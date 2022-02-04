@@ -2,7 +2,7 @@ var currentPosition = undefined;
 var currentDateTime = undefined;
 var map = undefined;
 var mapElements = [];
-var tripType = 'bike_trip';
+var tripType = undefined;
 
 export function updateInformation() {
     // get the datetime
@@ -48,17 +48,37 @@ export function updateInformation() {
 
 function clearMap() {
     mapElements.forEach((element) => {
-        console.log(element);
         element.remove();
     });
     mapElements = [];
 }
 
-function toggleBikeCar(newTripType) {
+function toggleBikeCar(event) {
+    event.preventDefault();
     updateInformation();
-    tripType = newTripType;
+    if (tripType === event.target.id) {
+        return;
+    }
+    tripType = event.target.id;
+    console.log(`New trip type: ${tripType}`);
 
-    // TODO: hide / display form details & manage aria live region
+    const tripToggleButtons = document.querySelectorAll(".trip-toggle > button");
+    tripToggleButtons.forEach((toggleButton) => toggleButton.setAttribute("selected", "false"));
+    event.target.setAttribute("selected", "true");
+
+
+    const submitButton = document.getElementById("form_submit");
+    submitButton.setAttribute("aria-disabled", "false");
+
+    const dynamicForm = document.getElementById("dynamic_form");
+    while (dynamicForm.firstChild) {
+        dynamicForm.removeChild(dynamicForm.firstChild);
+    }
+
+    const formTemplate = document.getElementById(`${tripType}_form_template`);
+
+    const formClone = formTemplate.content.cloneNode(true);
+    dynamicForm.appendChild(formClone);
 }
 
 function submitForm(event) {
@@ -76,7 +96,7 @@ function submitForm(event) {
     const trip = {
         user_id: 'test',
         data: {
-            type: 'bike_trip',
+            type: tripType,
         }
     };
 
@@ -84,13 +104,15 @@ function submitForm(event) {
     const purposeSelect = document.getElementById('trip_purpose');
     trip.purpose = purposeSelect.value;
 
-    // get the parking
-    const parkingSelect = document.getElementById('bike_parking');
-    trip.data.parking = parkingSelect.value;
-
-    // get the reason
-    const reasonSelect = document.getElementById('car_reason');
-    trip.data.reason = reasonSelect.value;
+    if (tripType === "bike_trip") {
+        // get the parking
+        const parkingSelect = document.getElementById('bike_parking');
+        trip.data.parking = parkingSelect.value;
+    } else {
+        // get the reason
+        const reasonSelect = document.getElementById('car_reason');
+        trip.data.reason = reasonSelect.value;
+    }
 
 
     // get the datetime
@@ -119,14 +141,12 @@ function displayError(errorMessage) {
     const errorHolder = document.getElementById("error_holder");
     errorHolder.innerText = errorMessage;
     errorHolder.classList.add("error-shown");
-    errorHolder.setAttribute("aria-live", "assertive");
 }
 
 function clearError() {
     const errorHolder = document.getElementById("error_holder");
     errorHolder.innerText = "";
     errorHolder.classList.remove("error-shown");
-    errorHolder.removeAttribute("aria-live");
 }
 
 function initialize() {
@@ -147,11 +167,15 @@ function initialize() {
     });
 
     // set up bike / car toggle handlers
-    const radios = document.querySelectorAll("input[name=type]");
-    radios.forEach((radioInput) => {
-        radioInput.onchange = (event) => {
-            toggleBikeCar(event.target.value);
-        };
+    const tripToggleButtons = document.querySelectorAll(".trip-toggle > button");
+    tripToggleButtons.forEach((toggleButton) => {
+        toggleButton.addEventListener("click", toggleBikeCar);
+
+        toggleButton.addEventListener("keyup", (event) => {
+            if (event.keyCode === 13) {
+                toggleBikeCar(event);
+            }
+        });
     });
 }
 
