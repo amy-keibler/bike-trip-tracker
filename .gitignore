@@ -1,3 +1,4 @@
 /target
 /static/style.css
 /certs/
+/.env
