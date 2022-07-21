@@ -11,6 +11,6 @@ chrono = { version = "0.4.19", features = ["serde"] }
 rocket = { version = "0.5.0-rc.2", features = ["json", "secrets", "tls"] }
 rocket_dyn_templates = { version = "0.1.0-rc.2", features = ["tera"] }
 rocket_db_pools = { git = "https://github.com/SergioBenitez/Rocket", branch = "v0.5-rc", features = ["sqlx_postgres"] }
-serde = "1.0.139"
+serde = "1.0.140"
 serde_json = "1.0.82"
 sqlx = { version = "0.6.0", features = ["runtime-tokio-rustls", "macros", "offline", "migrate", "uuid", "chrono", "json", "tls"] }
