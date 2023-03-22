@@ -167,7 +167,7 @@ dependencies = [
  "rocket_dyn_templates",
  "serde",
  "serde_json",
- "sqlx 0.6.2",
+ "sqlx 0.6.3",
 ]
 
 [[package]]
@@ -2175,12 +2175,12 @@ dependencies = [
 
 [[package]]
 name = "sqlx"
-version = "0.6.2"
+version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9249290c05928352f71c077cc44a464d880c63f26f7534728cca008e135c0428"
+checksum = "f8de3b03a925878ed54a954f621e64bf55a3c1bd29652d0d1a17830405350188"
 dependencies = [
- "sqlx-core 0.6.2",
- "sqlx-macros 0.6.2",
+ "sqlx-core 0.6.3",
+ "sqlx-macros 0.6.3",
 ]
 
 [[package]]
@@ -2236,9 +2236,9 @@ dependencies = [
 
 [[package]]
 name = "sqlx-core"
-version = "0.6.2"
+version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dcbc16ddba161afc99e14d1713a453747a2b07fc097d2009f4c300ec99286105"
+checksum = "fa8241483a83a3f33aa5fff7e7d9def398ff9990b2752b6c6112b83c6d246029"
 dependencies = [
  "ahash",
  "atoi 1.0.0",
@@ -2272,7 +2272,7 @@ dependencies = [
  "sha2",
  "smallvec",
  "sqlformat 0.2.0",
- "sqlx-rt 0.6.2",
+ "sqlx-rt 0.6.3",
  "stringprep",
  "thiserror",
  "tokio-stream",
@@ -2301,9 +2301,9 @@ dependencies = [
 
 [[package]]
 name = "sqlx-macros"
-version = "0.6.2"
+version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b850fa514dc11f2ee85be9d055c512aa866746adfacd1cb42d867d68e6a5b0d9"
+checksum = "9966e64ae989e7e575b19d7265cb79d7fc3cbbdf179835cb0d716f294c2049c9"
 dependencies = [
  "dotenvy",
  "either",
@@ -2315,8 +2315,8 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2",
- "sqlx-core 0.6.2",
- "sqlx-rt 0.6.2",
+ "sqlx-core 0.6.3",
+ "sqlx-rt 0.6.3",
  "syn",
  "url",
 ]
@@ -2334,9 +2334,9 @@ dependencies = [
 
 [[package]]
 name = "sqlx-rt"
-version = "0.6.2"
+version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "24c5b2d25fa654cc5f841750b8e1cdedbe21189bf9a9382ee90bfa9dd3562396"
+checksum = "804d3f245f894e61b1e6263c84b23ca675d96753b5abfd5cc8597d86806e8024"
 dependencies = [
  "once_cell",
  "tokio",
@@ -2379,9 +2379,9 @@ checksum = "6bdef32e8150c2a081110b42772ffe7d7c9032b606bc226c8260fd97e0976601"
 
 [[package]]
 name = "syn"
-version = "1.0.104"
+version = "1.0.109"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4ae548ec36cf198c0ef7710d3c230987c2d6d7bd98ad6edc0274462724c585ce"
+checksum = "72b64191b275b66ffe2469e8af2c1cfe3bafa67b529ead792a6d0160888b4237"
 dependencies = [
  "proc-macro2",
  "quote",
